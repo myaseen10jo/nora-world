@@ -1,0 +1,133 @@
+/* ═══════════════════════════════════════════════════════════════
+   NORA ANCIENT THEME — Warm, aged, heritage-inspired
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+[data-theme="ancient"] {
+    --primary: #422006;
+    --primary-hover: #573a13;
+    --accent: #b45309;
+    --accent-hover: #92400e;
+    --bg: #fefce8;
+    --bg-alt: #fef9c3;
+    --surface: #fffbeb;
+    --surface-hover: #fef3c7;
+    --text: #422006;
+    --text-secondary: #92400e;
+    --text-muted: #b45309;
+    --border: #d97706;
+    --border-light: #fbbf24;
+    --shadow-sm: 0 1px 3px rgba(66,32,6,0.08);
+    --shadow-md: 0 4px 16px rgba(66,32,6,0.1);
+    --shadow-lg: 0 20px 50px rgba(66,32,6,0.12);
+    --shadow-xl: 0 25px 50px -12px rgba(66,32,6,0.18);
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --font-sans: 'EB Garamond', Georgia, serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Ancient Background Texture */
+[data-theme="ancient"] body {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d97706' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Ancient Nav */
+[data-theme="ancient"] nav {
+    background: rgba(255,251,235,0.92) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 2px solid var(--border-light) !important;
+}
+
+[data-theme="ancient"] nav a {
+    font-family: 'EB Garamond', serif !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Ancient Cards */
+[data-theme="ancient"] .product-card {
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border-light) !important;
+    box-shadow: var(--shadow-sm) !important;
+    background: var(--surface) !important;
+    transition: all 0.5s var(--transition) !important;
+}
+
+[data-theme="ancient"] .product-card:hover {
+    box-shadow: var(--shadow-lg) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Ancient Buttons */
+[data-theme="ancient"] .btn-primary {
+    background: var(--primary) !important;
+    border-radius: var(--radius-md) !important;
+    font-family: 'EB Garamond', serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    font-size: 0.9rem !important;
+    transition: all 0.4s var(--transition) !important;
+    border: 2px solid var(--primary) !important;
+}
+
+[data-theme="ancient"] .btn-primary:hover {
+    background: transparent !important;
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+/* Ancient Hero */
+[data-theme="ancient"] .hero-section {
+    background: linear-gradient(160deg, #422006 0%, #78350f 40%, #92400e 80%, #b45309 100%) !important;
+}
+
+[data-theme="ancient"] .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23fbbf24' fill-opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+/* Ancient Section Heading */
+[data-theme="ancient"] .section-heading {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 600 !important;
+    font-style: italic !important;
+}
+
+/* Ancient Quote */
+[data-theme="ancient"] blockquote {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-style: italic !important;
+    font-size: 1.25rem !important;
+    border-left: 3px solid var(--accent) !important;
+    padding-left: 1.5rem !important;
+}
+
+/* Ancient Divider */
+[data-theme="ancient"] .section-padding::before {
+    content: '✦';
+    display: block;
+    text-align: center;
+    color: var(--accent);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Ancient Animations */
+[data-theme="ancient"][data-animation="reveal"] .anim-item {
+    animation: ancientReveal 1s var(--transition) forwards;
+}
+
+@keyframes ancientReveal {
+    from { opacity: 0; transform: translateY(20px); filter: blur(2px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}

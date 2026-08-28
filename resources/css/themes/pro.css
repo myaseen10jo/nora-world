@@ -1,0 +1,86 @@
+/* ═══════════════════════════════════════════════════════════════
+   NORA PRO THEME — Premium, refined, elegant
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="pro"] {
+    --primary: #1c1917;
+    --primary-hover: #292524;
+    --accent: #b45309;
+    --accent-hover: #92400e;
+    --bg: #faf9f7;
+    --bg-alt: #f5f5f4;
+    --surface: #ffffff;
+    --surface-hover: #fafaf9;
+    --text: #1c1917;
+    --text-secondary: #78716c;
+    --text-muted: #a8a29e;
+    --border: #e7e5e4;
+    --border-light: #f5f5f4;
+    --shadow-sm: 0 1px 2px rgba(28,25,23,0.04);
+    --shadow-md: 0 4px 16px rgba(28,25,23,0.06);
+    --shadow-lg: 0 20px 60px rgba(28,25,23,0.1);
+    --shadow-xl: 0 25px 50px -12px rgba(28,25,23,0.15);
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --transition: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+[data-theme="pro"] .theme-nav {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-light);
+}
+
+[data-theme="pro"] .theme-card {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.5s var(--transition);
+}
+
+[data-theme="pro"] .theme-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+[data-theme="pro"] .theme-btn-primary {
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 0.875rem 2rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: all 0.3s var(--transition);
+}
+
+[data-theme="pro"] .theme-btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+[data-theme="pro"] .theme-hero-gradient {
+    background: linear-gradient(135deg, #1c1917 0%, #292524 50%, #44403c 100%);
+}
+
+[data-theme="pro"] .theme-section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* PRO Animations */
+[data-theme="pro"][data-animation="reveal"] .anim-item {
+    animation: proReveal 0.8s var(--transition) forwards;
+}
+
+@keyframes proReveal {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}

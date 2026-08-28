@@ -1,0 +1,215 @@
+/* ═══════════════════════════════════════════════════════════════
+   NORA ANIMATION SYSTEM — 5 Animation Presets
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Base Animation Classes ─── */
+.anim-item {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.anim-item.anim-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Stagger delays */
+.anim-delay-1 { transition-delay: 0.1s; }
+.anim-delay-2 { transition-delay: 0.2s; }
+.anim-delay-3 { transition-delay: 0.3s; }
+.anim-delay-4 { transition-delay: 0.4s; }
+.anim-delay-5 { transition-delay: 0.5s; }
+.anim-delay-6 { transition-delay: 0.6s; }
+.anim-delay-7 { transition-delay: 0.7s; }
+.anim-delay-8 { transition-delay: 0.8s; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATION 1: REVEAL — Elegant fade-up with scale
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-animation="reveal"] .anim-item {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+}
+
+[data-animation="reveal"] .anim-item.anim-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATION 2: SLIDE — Directional slides from edges
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-animation="slide"] .anim-item {
+    opacity: 0;
+    transform: translateX(-60px);
+}
+
+[data-animation="slide"] .anim-item.anim-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+[data-animation="slide"] .anim-from-right {
+    transform: translateX(60px);
+}
+
+[data-animation="slide"] .anim-from-right.anim-visible {
+    transform: translateX(0);
+}
+
+[data-animation="slide"] .anim-from-bottom {
+    transform: translateY(60px);
+}
+
+[data-animation="slide"] .anim-from-bottom.anim-visible {
+    transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATION 3: FADE — Simple cross-fade with blur
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-animation="fade"] .anim-item {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(1.02);
+}
+
+[data-animation="fade"] .anim-item.anim-visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATION 4: PARALLAX — Depth-based parallax scrolling
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-animation="parallax"] .anim-item {
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+    transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+[data-animation="parallax"] .anim-item.anim-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Parallax floating elements */
+[data-animation="parallax"] .parallax-float {
+    animation: parallaxFloat 6s ease-in-out infinite;
+}
+
+@keyframes parallaxFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(-5px) rotate(-0.5deg); }
+}
+
+/* Parallax speed layers */
+[data-animation="parallax"] .parallax-slow { transition-duration: 1.2s !important; }
+[data-animation="parallax"] .parallax-medium { transition-duration: 0.9s !important; }
+[data-animation="parallax"] .parallax-fast { transition-duration: 0.6s !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATION 5: TYPEWRITER — Text reveals letter by letter effect
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-animation="typewriter"] .anim-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animation="typewriter"] .anim-item.anim-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typewriter text reveal */
+[data-animation="typewriter"] .typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 2px solid currentColor;
+    white-space: nowrap;
+    animation: typewriterBlink 0.7s step-end infinite;
+}
+
+@keyframes typewriterBlink {
+    from, to { border-color: transparent; }
+    50% { border-color: currentColor; }
+}
+
+/* Typewriter line reveal */
+[data-animation="typewriter"] .typewriter-line {
+    position: relative;
+}
+
+[data-animation="typewriter"] .typewriter-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+[data-animation="typewriter"] .typewriter-line.anim-visible::after {
+    width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SHARED EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hover scale effect for interactive elements */
+.anim-hover-scale {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.anim-hover-scale:hover {
+    transform: scale(1.03);
+}
+
+/* Magnetic button effect */
+.anim-magnetic {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Page transition */
+.page-transition-enter {
+    animation: pageEnter 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes pageEnter {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Image reveal */
+.img-reveal {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.img-reveal.revealed {
+    clip-path: inset(0 0 0 0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .anim-item {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+    }
+    .typewriter-text { animation: none !important; border-right: none !important; }
+    .parallax-float { animation: none !important; }
+}

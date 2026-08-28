@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Design Themes */
+@import './themes/pro.css';
+@import './themes/modern.css';
+@import './themes/ancient.css';
+@import './themes/minimal.css';
+@import './themes/luxury.css';
+
+/* Animation System */
+@import './animations.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BASE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@layer base {
+    body {
+        @apply bg-[#faf9f7] text-gray-900 antialiased;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    ::selection {
+        @apply bg-amber-100 text-amber-900;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { @apply bg-transparent; }
+    ::-webkit-scrollbar-thumb { @apply bg-stone-300 rounded-full; }
+    ::-webkit-scrollbar-thumb:hover { @apply bg-stone-400; }
+
+    html { scroll-behavior: smooth; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   COMPONENTS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@layer components {
+
+    /* ── Buttons ─────────────────────────────────── */
+
+    .btn-primary {
+        @apply bg-stone-900 text-white px-7 py-3.5 rounded-lg font-medium text-sm
+               tracking-wide uppercase
+               transition-all duration-300 ease-out
+               hover:bg-stone-800 hover:shadow-lg hover:-translate-y-0.5
+               active:scale-[0.98]
+               focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2;
+    }
+
+    .btn-secondary {
+        @apply bg-white text-stone-900 px-7 py-3.5 rounded-lg font-medium text-sm
+               tracking-wide uppercase border border-stone-200
+               transition-all duration-300 ease-out
+               hover:bg-stone-50 hover:shadow-lg hover:-translate-y-0.5 hover:border-stone-300
+               active:scale-[0.98]
+               focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2;
+    }
+
+    .btn-accent {
+        @apply bg-amber-600 text-white px-7 py-3.5 rounded-lg font-medium text-sm
+               tracking-wide uppercase
+               transition-all duration-300 ease-out
+               hover:bg-amber-700 hover:shadow-lg hover:-translate-y-0.5
+               active:scale-[0.98]
+               focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2;
+    }
+
+    /* ── Product Card ────────────────────────────── */
+
+    .product-card {
+        @apply bg-white rounded-xl overflow-hidden
+               shadow-[0_1px_3px_rgba(0,0,0,0.04)]
+               hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)]
+               hover:-translate-y-1;
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .product-card:active {
+        @apply scale-[0.995] transition-transform duration-100;
+    }
+
+    /* ── Product Image ───────────────────────────── */
+
+    .product-image {
+        @apply relative overflow-hidden bg-stone-50;
+    }
+
+    .product-image img {
+        transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .product-image:hover img {
+        @apply scale-105;
+    }
+
+    /* ── Section Styles ──────────────────────────── */
+
+    .section-padding {
+        @apply py-20 md:py-28;
+    }
+
+    .section-heading {
+        @apply text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-stone-900;
+        letter-spacing: -0.02em;
+    }
+
+    .section-subheading {
+        @apply text-stone-500 text-base md:text-lg mt-3 max-w-2xl;
+    }
+
+    .section-header {
+        @apply text-center mb-16;
+    }
+
+    /* ── Badge ───────────────────────────────────── */
+
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+               bg-stone-100 text-stone-600;
+    }
+
+    /* ── Category Card ───────────────────────────── */
+
+    .category-card {
+        @apply relative overflow-hidden rounded-2xl bg-white p-6 text-center
+               border border-stone-100
+               hover:border-stone-200 hover:shadow-xl hover:-translate-y-1;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* ── Quick Action Button ─────────────────────── */
+
+    .quick-action-btn {
+        @apply w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-stone-600
+               flex items-center justify-center shadow-md
+               transition-all duration-200 ease-out
+               hover:bg-stone-900 hover:text-white hover:shadow-lg hover:scale-110
+               active:scale-95;
+    }
+
+    /* ── Hero Animations ─────────────────────────── */
+
+    .hero-float {
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .hero-shimmer {
+        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+        background-size: 200% 100%;
+        animation: shimmer 4s ease-in-out infinite;
+    }
+
+    /* ── Reveal Animations ───────────────────────── */
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .reveal-scale.revealed {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* ── Loading Skeleton ────────────────────────── */
+
+    .skeleton {
+        background: linear-gradient(90deg, #f0ece6 25%, #e8e2d8 50%, #f0ece6 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s ease-in-out infinite;
+        border-radius: 0.5rem;
+    }
+
+    /* ── Page Enter ──────────────────────────────── */
+
+    .page-enter {
+        animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+
+    /* ── Newsletter ──────────────────────────────── */
+
+    .newsletter-input {
+        @apply w-full px-6 py-4 rounded-xl border border-stone-200
+               bg-white text-stone-800 text-sm
+               placeholder:text-stone-400
+               transition-all duration-300 ease-out
+               focus:outline-none focus:border-stone-400 focus:ring-4 focus:ring-stone-100;
+    }
+
+    .newsletter-btn {
+        @apply bg-stone-900 text-white px-8 py-4 rounded-xl font-medium text-sm
+               tracking-wide uppercase
+               transition-all duration-300 ease-out
+               hover:bg-stone-800 hover:shadow-lg hover:-translate-y-0.5
+               active:scale-[0.98];
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   KEYFRAME ANIMATIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+}
+
+/* ── Reduced Motion ─────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .reveal, .reveal-scale {
+        opacity: 1;
+        transform: none;
+    }
+}
