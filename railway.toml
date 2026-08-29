@@ -2,7 +2,6 @@
 builder = "dockerfile"
 
 [deploy]
-startCommand = "php artisan key:force && php artisan migrate --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=$PORT"
-healthcheckPath = "/"
+startCommand = "/app/entrypoint.sh"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3

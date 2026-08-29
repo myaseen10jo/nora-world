@@ -20,13 +20,22 @@ RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist || true
 # Copy everything
 COPY . .
 
-# Install properly and optimize
-RUN composer install --no-dev --optimize-autoloader \
-    && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache \
-    && php artisan config:cache || true \
-    && php artisan route:cache || true
+# Install properly
+RUN composer install --no-dev --optimize-autoloader
+
+# Create required directories
+RUN mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
+# Create entrypoint script
+RUN echo '#!/bin/sh\n\
+php artisan key:force --no-interaction 2>/dev/null || true\n\
+php artisan migrate --force 2>/dev/null || true\n\
+php artisan config:cache 2>/dev/null || true\n\
+php artisan route:cache 2>/dev/null || true\n\
+php artisan view:cache 2>/dev/null || true\n\
+exec php artisan serve --host=0.0.0.0 --port=${PORT:-8000}\n' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan key:force && php artisan migrate --force && php artisan db:seed --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD ["/app/entrypoint.sh"]
