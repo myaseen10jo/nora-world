@@ -1,20 +1,11 @@
 {
   "version": 2,
   "framework": null,
-  "builds": [
-    {
-      "src": "/api/index.php",
-      "use": "vercel-php@0.7.3"
-    },
-    {
-      "src": "/public/build/assets/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "/public/**",
-      "use": "@vercel/static"
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.7.3"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/build/assets/(.*)",
@@ -26,9 +17,6 @@
     },
     {
       "src": "/favicon.ico",
-      "headers": {
-        "Content-Type": "image/x-icon"
-      },
       "dest": "/public/favicon.ico"
     },
     {
@@ -36,15 +24,17 @@
       "dest": "/api/index.php"
     }
   ],
-  "outputDirectory": "public",
   "env": {
     "APP_NAME": "NORA WORLD",
     "APP_ENV": "production",
     "APP_DEBUG": "false",
     "APP_URL": "https://nora-world.vercel.app",
+    "DB_CONNECTION": "sqlite",
+    "DB_DATABASE": "/tmp/database.sqlite",
     "LOG_CHANNEL": "stderr",
     "CACHE_DRIVER": "array",
     "SESSION_DRIVER": "array",
+    "SESSION_LIFETIME": "120",
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
     "APP_PACKAGES_CACHE": "/tmp/packages.php",

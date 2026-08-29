@@ -1,5 +1,9 @@
 /vendor
 /node_modules
 /.git
-/storage
 /tests
+/docs
+*.md
+.gitignore
+.vscode
+.idea
