@@ -25,4 +25,7 @@ RUN composer install --no-dev --optimize-autoloader \
 
 EXPOSE 8000
 
+# Force HTTPS for reverse proxy environments like Railway
+ENV FORCE_HTTPS=true
+
 CMD ["sh", "-c", "php artisan config:clear 2>/dev/null; php artisan cache:clear 2>/dev/null; php artisan route:clear 2>/dev/null; php artisan view:clear 2>/dev/null; php artisan migrate:fresh --force --seed 2>/dev/null; exec php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
