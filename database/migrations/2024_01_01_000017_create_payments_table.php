@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('currency', 3)->default('USD');
             $table->string('payer_email')->nullable();
             $table->string('payer_id')->nullable();
-            $table->text('payment_method')->default('paypal');
+            $table->string('payment_method')->default('paypal');
             $table->json('metadata')->nullable(); // Safe payment metadata
             $table->text('failure_reason')->nullable();
             $table->timestamp('captured_at')->nullable();
