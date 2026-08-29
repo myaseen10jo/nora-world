@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'NORA — Vintage • Collectibles • Art • Pre-Loved Treasures')
+@section('title', 'NORA WORLD WORLD — Vintage • Collectibles • Art • Pre-Loved Treasures')
 
 @section('content')
 <div x-data="scrollReveal()" x-init="init()">
@@ -26,7 +26,7 @@
                 </div>
 
                 <h1 class="text-6xl md:text-7xl lg:text-[5.5rem] font-serif font-bold mb-4 leading-[0.85] tracking-tight page-enter" style="animation-delay: 0.2s;">
-                    NORA
+                    NORA WORLD
                 </h1>
 
                 <p class="text-sm text-stone-400 tracking-[0.3em] uppercase mb-10 page-enter" style="animation-delay: 0.25s;">
@@ -53,20 +53,20 @@
             {{-- Right: Product Grid --}}
             <div class="hidden lg:grid grid-cols-2 gap-4 page-enter" style="animation-delay: 0.3s;">
                 <div class="space-y-4">
-                    <div class="rounded-2xl overflow-hidden aspect-[3/4] shadow-2xl hover:-translate-y-2 transition-transform duration-700">
+                    <a href="{{ route('products.show', 'vintage-ceramic-vase') }}" class="block rounded-2xl overflow-hidden aspect-[3/4] shadow-2xl hover:-translate-y-2 transition-transform duration-700">
                         <img src="{{ asset('images/nora/products/product-01.jpeg') }}" alt="Vintage Ceramic Vase" class="w-full h-full object-cover">
-                    </div>
-                    <div class="rounded-2xl overflow-hidden aspect-square shadow-2xl hover:-translate-y-2 transition-transform duration-700">
+                    </a>
+                    <a href="{{ route('products.show', 'vintage-timepiece') }}" class="block rounded-2xl overflow-hidden aspect-square shadow-2xl hover:-translate-y-2 transition-transform duration-700">
                         <img src="{{ asset('images/nora/products/product-09.jpeg') }}" alt="Vintage Timepiece" class="w-full h-full object-cover">
-                    </div>
+                    </a>
                 </div>
                 <div class="space-y-4 mt-12">
-                    <div class="rounded-2xl overflow-hidden aspect-square shadow-2xl hover:-translate-y-2 transition-transform duration-700">
+                    <a href="{{ route('products.show', 'handmade-folk-art-doll') }}" class="block rounded-2xl overflow-hidden aspect-square shadow-2xl hover:-translate-y-2 transition-transform duration-700">
                         <img src="{{ asset('images/nora/products/product-05.jpeg') }}" alt="Folk Art Doll" class="w-full h-full object-cover">
-                    </div>
-                    <div class="rounded-2xl overflow-hidden aspect-[3/4] shadow-2xl hover:-translate-y-2 transition-transform duration-700">
+                    </a>
+                    <a href="{{ route('products.show', 'vintage-handbag') }}" class="block rounded-2xl overflow-hidden aspect-[3/4] shadow-2xl hover:-translate-y-2 transition-transform duration-700">
                         <img src="{{ asset('images/nora/products/product-15.jpeg') }}" alt="Vintage Handbag" class="w-full h-full object-cover">
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -126,30 +126,38 @@
 
         @php
         $showcaseProducts = [
-            ['image' => 'product-01.jpeg', 'name' => 'Vintage Ceramic Vase', 'category' => 'Ceramics & Glassware', 'price' => '$45'],
-            ['image' => 'product-05.jpeg', 'name' => 'Folk Art Doll', 'category' => 'Decorative Objects & Art', 'price' => '$42'],
-            ['image' => 'product-09.jpeg', 'name' => 'Vintage Timepiece', 'category' => 'Watches & Jewellery', 'price' => '$85'],
-            ['image' => 'product-12.jpeg', 'name' => 'Commemorative Plate', 'category' => 'Collectibles', 'price' => '$58'],
-            ['image' => 'product-03.jpeg', 'name' => 'Decorative Plate', 'category' => 'Ceramics & Glassware', 'price' => '$52'],
-            ['image' => 'product-07.jpeg', 'name' => 'Artistic Mirror', 'category' => 'Decorative Objects & Art', 'price' => '$65'],
-            ['image' => 'product-15.jpeg', 'name' => 'Vintage Handbag', 'category' => 'Accessories & Handbags', 'price' => '$55'],
-            ['image' => 'product-10.jpeg', 'name' => 'Heritage Necklace', 'category' => 'Watches & Jewellery', 'price' => '$48'],
+            ['image' => 'product-01.jpeg', 'name' => 'Vintage Ceramic Vase', 'slug' => 'vintage-ceramic-vase', 'category' => 'Ceramics & Glassware', 'price' => '$45'],
+            ['image' => 'product-05.jpeg', 'name' => 'Folk Art Doll', 'slug' => 'handmade-folk-art-doll', 'category' => 'Decorative Objects & Art', 'price' => '$42'],
+            ['image' => 'product-09.jpeg', 'name' => 'Vintage Timepiece', 'slug' => 'vintage-timepiece', 'category' => 'Watches & Jewellery', 'price' => '$85'],
+            ['image' => 'product-12.jpeg', 'name' => 'Commemorative Plate', 'slug' => 'commemorative-collector-plate', 'category' => 'Collectibles', 'price' => '$58'],
+            ['image' => 'product-03.jpeg', 'name' => 'Decorative Plate', 'slug' => 'ornate-decorative-plate', 'category' => 'Ceramics & Glassware', 'price' => '$52'],
+            ['image' => 'product-07.jpeg', 'name' => 'Artistic Mirror', 'slug' => 'vintage-artistic-mirror', 'category' => 'Decorative Objects & Art', 'price' => '$65'],
+            ['image' => 'product-15.jpeg', 'name' => 'Vintage Handbag', 'slug' => 'vintage-handbag', 'category' => 'Accessories & Handbags', 'price' => '$55'],
+            ['image' => 'product-10.jpeg', 'name' => 'Heritage Necklace', 'slug' => 'heritage-necklace', 'category' => 'Watches & Jewellery', 'price' => '$48'],
         ];
         @endphp
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             @foreach($showcaseProducts as $index => $product)
-            <div class="product-card group reveal" style="transition-delay: {{ $index * 0.06 }}s;">
-                <div class="product-image aspect-square">
-                    <img src="{{ asset('images/nora/products/' . $product['image']) }}" alt="{{ $product['name'] }}" class="w-full h-full object-cover" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <a href="{{ route('products.show', $product['slug']) }}" class="product-card group block reveal" style="transition-delay: {{ $index * 0.06 }}s;">
+                <div class="product-image aspect-square relative">
+                    <img src="{{ asset('images/nora/products/' . $product['image']) }}" alt="{{ $product['name'] }}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 pointer-events-none">
+                        <span class="inline-flex items-center justify-center w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full shadow-sm">
+                            <svg class="w-4 h-4 text-stone-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </span>
+                    </div>
                 </div>
                 <div class="p-4">
                     <p class="text-[10px] font-medium text-stone-400 uppercase tracking-wider mb-1">{{ $product['category'] }}</p>
-                    <h3 class="text-sm font-medium text-stone-800 group-hover:text-stone-600 transition-colors">{{ $product['name'] }}</h3>
+                    <h3 class="text-sm font-medium text-stone-800 group-hover:text-stone-600 transition-colors line-clamp-2">{{ $product['name'] }}</h3>
                     <p class="text-sm font-semibold text-stone-900 mt-2">{{ $product['price'] }}</p>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
 

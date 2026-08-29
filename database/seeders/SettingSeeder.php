@@ -13,7 +13,7 @@ class SettingSeeder extends Seeder
             // General
             ['key' => 'store_name', 'value' => 'NORA', 'group' => 'general', 'type' => 'text'],
             ['key' => 'store_tagline', 'value' => 'Authentic Handmade Heritage from Jordan and Palestine', 'group' => 'general', 'type' => 'text'],
-            ['key' => 'store_email', 'value' => 'info@noormarket.com', 'group' => 'general', 'type' => 'text'],
+            ['key' => 'store_email', 'value' => 'info@noraworld.com', 'group' => 'general', 'type' => 'text'],
             ['key' => 'store_phone', 'value' => '+962-XX-XXXXXXX', 'group' => 'general', 'type' => 'text'],
             ['key' => 'store_address', 'value' => 'Amman, Jordan', 'group' => 'general', 'type' => 'textarea'],
             ['key' => 'currency', 'value' => 'USD', 'group' => 'general', 'type' => 'text'],

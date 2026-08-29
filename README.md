@@ -1,6 +1,6 @@
-# NoorMarket — Authentic Handmade Heritage from Jordan & Palestine
+# NORA WORLD — Authentic Handmade Heritage from Jordan & Palestine
 
-NoorMarket is an English-language e-commerce platform selling authentic handmade and heritage-inspired home products from Jordan and Palestine. Built with **Laravel 13**, **Filament 3**, and **PayPal Checkout**, it targets customers in the **United States** and **Europe**.
+NORA WORLD is an English-language e-commerce platform selling authentic handmade and heritage-inspired home products from Jordan and Palestine. Built with **Laravel 13**, **Filament 3**, and **PayPal Checkout**, it targets customers in the **United States** and **Europe**.
 
 ---
 
@@ -33,7 +33,7 @@ NoorMarket is an English-language e-commerce platform selling authentic handmade
 ### 1. Clone and install dependencies
 
 ```bash
-cd noormarket
+cd nora-world
 composer install
 npm install && npm run build
 ```
@@ -53,7 +53,7 @@ Edit `.env` to set your database connection:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=noormarket
+DB_DATABASE=nora-world
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -148,7 +148,7 @@ PAYPAL_CURRENCY=USD
 
 Access the admin panel at `/admin`. The seeded admin account:
 
-- **Email:** admin@noormarket.com
+- **Email:** admin@nora-world.com
 - **Password:** password
 
 ### Admin capabilities:

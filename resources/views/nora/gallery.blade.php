@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Collection Gallery — NORA')
+@section('title', 'Collection Gallery — NORA WORLD WORLD')
 
 @section('content')
 <div x-data="{ activeCategory: 'all' }">
@@ -64,23 +64,34 @@
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-16">
                 @foreach($category['products'] as $pIndex => $product)
-                <div class="product-card group">
-                    <div class="product-image aspect-square">
+                <a href="{{ route('products.show', $product['slug']) }}" class="product-card group block">
+                    <div class="product-image aspect-square relative">
                         <img
                             src="{{ asset('images/nora/products/' . $product['image']) }}"
                             alt="{{ $product['name'] }}"
-                            class="w-full h-full object-cover"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                             loading="lazy"
                         >
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-stone-700 text-[10px] font-medium px-2.5 py-1 rounded-full shadow-sm">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-stone-700 text-[10px] font-medium px-2.5 py-1 rounded-full shadow-sm pointer-events-none">
                             {{ $product['tag'] }}
                         </span>
+                        <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 pointer-events-none">
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full shadow-sm">
+                                <svg class="w-4 h-4 text-stone-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </span>
+                        </div>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-sm font-medium text-stone-800 group-hover:text-stone-600 transition-colors">{{ $product['name'] }}</h3>
+                        <h3 class="text-sm font-medium text-stone-800 group-hover:text-stone-600 transition-colors line-clamp-2">{{ $product['name'] }}</h3>
+                        @if(isset($product['price']))
+                        <p class="text-sm font-semibold text-stone-900 mt-1.5">{{ $product['price'] }}</p>
+                        @endif
                     </div>
-                </div>
+                </a>
                 @endforeach
             </div>
         </div>

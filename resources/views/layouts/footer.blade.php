@@ -5,7 +5,7 @@
             {{-- Brand --}}
             <div class="md:col-span-4">
                 <div class="flex items-center gap-2.5 mb-5">
-                    <img src="{{ asset('images/nora/logo.jpeg') }}" alt="NORA" class="h-7 w-auto object-contain opacity-90">
+                    <img src="{{ asset('images/nora/logo.jpeg') }}" alt="NORA WORLD" class="h-7 w-auto object-contain opacity-90">
                 </div>
                 <p class="text-stone-500 text-sm leading-relaxed mb-6 max-w-xs">
                     From Our Home to Yours. Vintage • Collectibles • Art • Pre-Loved Treasures.
@@ -62,7 +62,7 @@
         {{-- Bottom Bar --}}
         <div class="py-6 border-t border-stone-800 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p class="text-stone-600 text-xs">
-                © {{ date('Y') }} NORA. All rights reserved.
+                © {{ date('Y') }} NORA WORLD. All rights reserved.
             </p>
             <div class="flex items-center gap-6">
                 <div class="flex items-center gap-1.5 text-stone-600 text-xs">

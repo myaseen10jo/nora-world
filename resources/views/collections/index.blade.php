@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Collections - NORA')
+@section('title', 'Collections - NORA WORLD')
 
 @section('content')
 <div class="pt-24 pb-16">

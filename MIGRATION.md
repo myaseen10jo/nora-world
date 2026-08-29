@@ -1,4 +1,4 @@
-# NoorMarket — Full Project Documentation & Migration Guide
+# NORA WORLD — Full Project Documentation & Migration Guide
 
 > **Last updated:** August 26, 2026
 > **Project version:** Laravel 13.29.0 · PHP 8.5.4 · Filament 3
@@ -27,7 +27,7 @@
 
 ## 1. Project Summary
 
-NoorMarket is a full-featured English-language e-commerce platform selling authentic handmade and heritage-inspired home products from **Jordan** and **Palestine**. It targets customers in the **United States** and **Europe**.
+NORA WORLD is a full-featured English-language e-commerce platform selling authentic handmade and heritage-inspired home products from **Jordan** and **Palestine**. It targets customers in the **United States** and **Europe**.
 
 ### What Was Built
 
@@ -121,7 +121,7 @@ zip
 ## 4. Complete File Structure
 
 ```
-noormarket/
+nora-world/
 │
 ├── app/
 │   ├── Filament/
@@ -508,7 +508,7 @@ noormarket/
 ### Full `.env.example`
 
 ```env
-APP_NAME=NoorMarket
+APP_NAME=NORA WORLD
 APP_ENV=local
 APP_KEY=base64:GENERATED_KEY_HERE
 APP_DEBUG=true
@@ -531,7 +531,7 @@ LOG_LEVEL=debug
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=noormarket
+DB_DATABASE=nora-world
 DB_USERNAME=root
 DB_PASSWORD=
 
@@ -546,7 +546,7 @@ FILESYSTEM_DISK=local
 QUEUE_CONNECTION=database
 
 CACHE_STORE=database
-CACHE_PREFIX=noormarket
+CACHE_PREFIX=nora-world
 
 MAIL_MAILER=log
 MAIL_HOST=127.0.0.1
@@ -554,7 +554,7 @@ MAIL_PORT=2525
 MAIL_USERNAME=null
 MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS="hello@noormarket.com"
+MAIL_FROM_ADDRESS="hello@nora-world.com"
 MAIL_FROM_NAME="${APP_NAME}"
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -588,31 +588,31 @@ php artisan down
 
 ```bash
 # MySQL
-mysqldump -u root -p noormarket > noormarket_database_backup.sql
+mysqldump -u root -p nora-world > nora-world_database_backup.sql
 
 # Or with full options
-mysqldump -u root -p --single-transaction --routines --triggers noormarket > noormarket_database_backup.sql
+mysqldump -u root -p --single-transaction --routines --triggers nora-world > nora-world_database_backup.sql
 ```
 
 ### Step 3: Create the Backup Archive
 
 ```bash
-# From the PARENT directory of noormarket/
+# From the PARENT directory of nora-world/
 cd C:\inetpub\wwwroot
 
 # Create zip archive (exclude vendor, node_modules, storage/framework, storage/logs)
 # On Windows with PowerShell:
-Compress-Archive -Path "noormarket" -DestinationPath "noormarket_backup_$(Get-Date -Format 'yyyy-MM-dd_HHmmss').zip" -CompressionLevel Optimal
+Compress-Archive -Path "nora-world" -DestinationPath "nora-world_backup_$(Get-Date -Format 'yyyy-MM-dd_HHmmss').zip" -CompressionLevel Optimal
 
 # OR on Linux/Mac:
-tar -czf noormarket_backup_$(date +%Y%m%d_%H%M%S).tar.gz \
-    --exclude='noormarket/vendor' \
-    --exclude='noormarket/node_modules' \
-    --exclude='noormarket/storage/framework' \
-    --exclude='noormarket/storage/logs' \
-    --exclude='noormarket/public/build' \
-    --exclude='noormarket/.env' \
-    noormarket/
+tar -czf nora-world_backup_$(date +%Y%m%d_%H%M%S).tar.gz \
+    --exclude='nora-world/vendor' \
+    --exclude='nora-world/node_modules' \
+    --exclude='nora-world/storage/framework' \
+    --exclude='nora-world/storage/logs' \
+    --exclude='nora-world/public/build' \
+    --exclude='nora-world/.env' \
+    nora-world/
 ```
 
 ### Step 4: Backup Uploaded Files Separately
@@ -621,10 +621,10 @@ tar -czf noormarket_backup_$(date +%Y%m%d_%H%M%S).tar.gz \
 # Product images and category images
 # These are in storage/app/public/
 # On Windows:
-xcopy /E /I "noormarket\storage\app\public" "noormarket_uploads_backup"
+xcopy /E /I "nora-world\storage\app\public" "nora-world_uploads_backup"
 
 # On Linux/Mac:
-cp -r noormarket/storage/app/public noormarket_uploads_backup
+cp -r nora-world/storage/app/public nora-world_uploads_backup
 ```
 
 ### Step 5: Export Composer.lock and Package-lock.json
@@ -644,9 +644,9 @@ php artisan up
 ### Complete Backup Checklist
 
 ```
-✅ noormarket_database_backup.sql       (Database export)
-✅ noormarket_uploads_backup/           (Product/category images)
-✅ noormarket_backup_YYYYMMDD.zip       (Full project files)
+✅ nora-world_database_backup.sql       (Database export)
+✅ nora-world_uploads_backup/           (Product/category images)
+✅ nora-world_backup_YYYYMMDD.zip       (Full project files)
 ✅ .env values noted separately         (PayPal keys, DB creds, APP_KEY)
 ✅ composer.lock                        (In the zip)
 ✅ package-lock.json                    (In the zip)
@@ -678,9 +678,9 @@ mysql -u root -p
 ```
 
 ```sql
-CREATE DATABASE noormarket CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'noormarket_user'@'localhost' IDENTIFIED BY 'YOUR_SECURE_PASSWORD';
-GRANT ALL PRIVILEGES ON noormarket.* TO 'noormarket_user'@'localhost';
+CREATE DATABASE nora-world CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'nora-world_user'@'localhost' IDENTIFIED BY 'YOUR_SECURE_PASSWORD';
+GRANT ALL PRIVILEGES ON nora-world.* TO 'nora-world_user'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
 ```
@@ -691,13 +691,13 @@ EXIT;
 # Copy the backup zip to the new server
 # Unzip to web root
 cd /var/www  # or C:\inetpub\wwwroot on Windows
-unzip noormarket_backup_YYYYMMDD.zip
+unzip nora-world_backup_YYYYMMDD.zip
 ```
 
 ### Step 4: Install Dependencies
 
 ```bash
-cd noormarket
+cd nora-world
 
 # Install Composer dependencies
 composer install --optimize-autoloader --no-dev
@@ -726,8 +726,8 @@ APP_URL=https://yourdomain.com
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=noormarket
-DB_USERNAME=noormarket_user
+DB_DATABASE=nora-world
+DB_USERNAME=nora-world_user
 DB_PASSWORD=YOUR_SECURE_PASSWORD
 
 # PayPal (copy from old server)
@@ -741,7 +741,7 @@ PAYPAL_CURRENCY=USD
 
 ```bash
 # Import the backup
-mysql -u noormarket_user -p noormarket < noormarket_database_backup.sql
+mysql -u nora-world_user -p nora-world < nora-world_database_backup.sql
 
 # OR run fresh migrations + seeders (if you prefer clean install)
 php artisan migrate
@@ -752,9 +752,9 @@ php artisan db:seed
 
 ```bash
 # Copy uploaded product/category images back
-cp -r noormarket_uploads_backup/* noormarket/storage/app/public/
+cp -r nora-world_uploads_backup/* nora-world/storage/app/public/
 # Or on Windows:
-xcopy /E /I /Y "noormarket_uploads_backup\*" "noormarket\storage\app\public\"
+xcopy /E /I /Y "nora-world_uploads_backup\*" "nora-world\storage\app\public\"
 ```
 
 ### Step 8: Create Storage Symlink
@@ -767,10 +767,10 @@ php artisan storage:link
 
 ```bash
 # Storage and cache writable
-sudo chown -R www-data:www-data noormarket/storage
-sudo chown -R www-data:www-data noormarket/bootstrap/cache
-sudo chmod -R 775 noormarket/storage
-sudo chmod -R 775 noormarket/bootstrap/cache
+sudo chown -R www-data:www-data nora-world/storage
+sudo chown -R www-data:www-data nora-world/bootstrap/cache
+sudo chmod -R 775 nora-world/storage
+sudo chmod -R 775 nora-world/bootstrap/cache
 ```
 
 ### Step 10: Optimize for Production
@@ -790,7 +790,7 @@ php artisan event:cache
 server {
     listen 80;
     server_name yourdomain.com;
-    root /var/www/noormarket/public;
+    root /var/www/nora-world/public;
 
     index index.php;
 
@@ -890,7 +890,7 @@ php artisan route:clear
 ✅ PayPal credentials changed to LIVE (for production)
 ✅ APP_DEBUG=false in production
 ✅ APP_ENV=production in .env
-✅ Cron job scheduled: * * * * * cd /path/to/noormarket && php artisan schedule:run
+✅ Cron job scheduled: * * * * * cd /path/to/nora-world && php artisan schedule:run
 ```
 
 ---
@@ -951,11 +951,11 @@ If deploying on Windows IIS:
 1. **Enable URL Rewrite** — Install IIS URL Rewrite Module
 2. **Enable FastCGI** — Configure PHP via FastCGI
 3. **Application Pool** — Set to "No Managed Code"
-4. **Physical Path** — Point to `noormarket/public/`
+4. **Physical Path** — Point to `nora-world/public/`
 5. **web.config** — Create for URL rewriting (see Step 11)
 6. **Storage Symlink** — IIS may need a junction instead:
    ```cmd
-   mklink /J C:\inetpub\wwwroot\noormarket\public\storage C:\inetpub\wwwroot\noormarket\storage\app\public
+   mklink /J C:\inetpub\wwwroot\nora-world\public\storage C:\inetpub\wwwroot\nora-world\storage\app\public
    ```
 7. **Permissions** — Give IIS_IUSRS read/write to `storage/` and `bootstrap/cache/`
 
@@ -969,7 +969,7 @@ When running `php artisan db:seed`, the following data is created:
 | Field | Value |
 |---|---|
 | Name | Admin |
-| Email | admin@noormarket.com |
+| Email | admin@nora-world.com |
 | Password | password |
 | Is Admin | true |
 
@@ -1003,7 +1003,7 @@ Pre-seeded with sample customer reviews
 Jordanian Heritage · Palestinian Heritage · Handcrafted Home Décor · Gifts with a Story
 
 ### Store Settings
-Currency: USD · Store Name: NoorMarket · PayPal Mode: Sandbox
+Currency: USD · Store Name: NORA WORLD · PayPal Mode: Sandbox
 
 ---
 
@@ -1072,16 +1072,16 @@ npm run build
 ## Quick Reference: What to Copy to New Server
 
 ```
-1. noormarket/                    ← Full project directory (minus vendor/node_modules)
-2. noormarket_database_backup.sql ← Database export
-3. noormarket_uploads_backup/     ← Uploaded images
+1. nora-world/                    ← Full project directory (minus vendor/node_modules)
+2. nora-world_database_backup.sql ← Database export
+3. nora-world_uploads_backup/     ← Uploaded images
 4. .env values                    ← Manually recreate (NEVER copy .env directly)
 ```
 
 ### Minimum files for a fresh install (without database backup):
 
 ```
-noormarket/
+nora-world/
 ├── app/                          ← All PHP code
 ├── bootstrap/
 ├── config/

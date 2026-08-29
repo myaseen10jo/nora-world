@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'NORA') }}</title>
+        <title>{{ config("app.name", "NORA WORLD") WORLD') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center py-12 px-4">
             <div class="mb-8">
                 <a href="/" class="flex items-center gap-2.5">
-                    <img src="{{ asset('images/nora/logo.jpeg') }}" alt="NORA" class="h-10 w-auto object-contain">
+                    <img src="{{ asset('images/nora/logo.jpeg') }}" alt="NORA WORLD" class="h-10 w-auto object-contain">
                 </a>
             </div>
 
@@ -28,7 +28,7 @@
             </div>
 
             <p class="mt-8 text-xs text-stone-400">
-                &copy; {{ date('Y') }} NORA. All rights reserved.
+                &copy; {{ date('Y') }} NORA WORLD. All rights reserved.
             </p>
         </div>
     </body>

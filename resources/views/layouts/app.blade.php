@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="description" content="NORA — From Our Home to Yours. Vintage, Collectibles, Art, and Pre-Loved Treasures.">
+        <meta name="description" content="NORA WORLD — From Our Home to Yours. Vintage, Collectibles, Art, and Pre-Loved Treasures.">
 
-        <title>@yield('title', 'NORA — From Our Home to Yours')</title>
+        <title>@yield('title', 'NORA WORLD — From Our Home to Yours')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

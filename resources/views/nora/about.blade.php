@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Our Story — NORA')
+@section('title', 'Our Story — NORA WORLD')
 
 @section('content')
 <div x-data="scrollReveal()" x-init="init()">
@@ -12,7 +12,7 @@
 
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
         <p class="text-[11px] text-stone-500 uppercase tracking-[0.3em] mb-6 font-medium page-enter" style="animation-delay: 0.1s;">From Our Home to Yours</p>
-        <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 leading-[0.9] page-enter" style="animation-delay: 0.2s;">NORA</h1>
+        <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 leading-[0.9] page-enter" style="animation-delay: 0.2s;">NORA WORLD</h1>
         <p class="text-sm text-stone-400 tracking-[0.3em] uppercase mb-8 page-enter" style="animation-delay: 0.25s;">Vintage · Collectibles · Art · Pre-Loved</p>
         <p class="text-lg md:text-xl text-stone-300/70 italic max-w-2xl mx-auto page-enter" style="animation-delay: 0.35s;">
             "Every piece has lived a story. Now it's ready to begin another."

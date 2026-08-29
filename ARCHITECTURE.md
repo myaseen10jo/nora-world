@@ -1,8 +1,8 @@
-# NoorMarket — Architecture
+# NORA WORLD — Architecture
 
 ## Overview
 
-NoorMarket is a Laravel 13 application following the MVC pattern with a Filament admin panel. It uses Blade templates with Tailwind CSS for the storefront, and PayPal REST API for payment processing.
+NORA WORLD is a Laravel 13 application following the MVC pattern with a Filament admin panel. It uses Blade templates with Tailwind CSS for the storefront, and PayPal REST API for payment processing.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -298,7 +298,7 @@ PayPal → POST /webhooks/paypal → WebhookController
 ## File Structure
 
 ```
-noormarket/
+nora-world/
 ├── app/
 │   ├── Filament/Resources/          # Admin panel resources
 │   ├── Http/Controllers/            # Storefront + API controllers
