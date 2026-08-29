@@ -1,3 +1,5 @@
+Route::get('/debug-test', fn() => response()->json(['status' => 'ok', 'php' => phpversion(), 'debug' => config('app.debug'), 'env' => config('app.env')]));
+
 <?php
 
 use App\Http\Controllers\CartController;
