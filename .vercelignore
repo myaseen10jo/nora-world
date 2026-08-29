@@ -1,9 +1,0 @@
-/vendor
-/node_modules
-/.git
-/tests
-/docs
-*.md
-.gitignore
-.vscode
-.idea

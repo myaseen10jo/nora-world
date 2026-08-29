@@ -26,3 +26,5 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 GIT-TOKEN.txt
+.env.production
+GIT-TOKEN.txt
