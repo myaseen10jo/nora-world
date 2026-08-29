@@ -21,8 +21,9 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader \
     && touch .env \
     && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache
+    && chmod -R 775 storage bootstrap/cache \
+    && rm -rf storage/framework/cache/*.php storage/framework/views/*.php bootstrap/cache/*.php
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "touch .env && php artisan key:generate --no-interaction 2>/dev/null; php artisan migrate --force 2>/dev/null; exec php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
+CMD ["sh", "-c", "touch .env && php artisan config:clear 2>/dev/null; php artisan route:clear 2>/dev/null; php artisan view:clear 2>/dev/null; php artisan cache:clear 2>/dev/null; php artisan key:generate --no-interaction 2>/dev/null; php artisan migrate --force 2>/dev/null; exec php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
