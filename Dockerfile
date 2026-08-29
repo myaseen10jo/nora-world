@@ -19,9 +19,11 @@ RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist || true
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader \
+    && touch .env \
     && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache
+    && chmod -R 775 storage bootstrap/cache \
+    && chmod 666 storage/logs/*.log 2>/dev/null || true
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan key:force --no-interaction 2>/dev/null; php artisan migrate --force 2>/dev/null; exec php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
+CMD ["sh", "-c", "touch .env && php artisan key:force --no-interaction 2>/dev/null; php artisan migrate --force 2>/dev/null; exec php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
