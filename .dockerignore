@@ -1,0 +1,15 @@
+# Prevent .env and sensitive files from being in Docker build
+.env
+.env.backup
+.env.production
+.git
+.gitignore
+.gitattributes
+.vscode
+.idea
+node_modules
+npm-debug.log
+docker-compose.yml
+Dockerfile
+*.md
+.phpunit.cache
