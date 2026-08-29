@@ -77,4 +77,24 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 });
 
+// Debug CSRF (remove after testing)
+Route::get('/debug-csrf', function () {
+    $session = session();
+    return response()->json([
+        'session_id' => $session->getId(),
+        'session_driver' => config('session.driver'),
+        'session_domain' => config('session.domain'),
+        'session_secure' => config('session.secure'),
+        'csrf_token' => csrf_token(),
+        'session_token' => $session->token(),
+        'app_key_set' => !empty(config('app.key')),
+        'url' => config('app.url'),
+        'force_https' => config('app.force_https'),
+    ]);
+});
+
+Route::post('/debug-csrf', function () {
+    return response()->json(['success' => true, 'token' => csrf_token()]);
+});
+
 require __DIR__.'/auth.php';
