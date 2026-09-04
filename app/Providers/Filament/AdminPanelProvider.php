@@ -24,7 +24,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->id('admin')
-            ->path('admin')
+            ->path('nora-backoffice-2024')
             ->brandName('NORA Admin')
             ->brandLogo(asset('images/logo.png'))
             ->favicon(asset('images/favicon.ico'))

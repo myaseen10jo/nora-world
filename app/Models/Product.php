@@ -88,6 +88,16 @@ class Product extends Model
         return $this->hasMany(ProductImage::class)->orderBy('sort_order');
     }
 
+    public function media(): HasMany
+    {
+        return $this->hasMany(ProductMedia::class)->orderBy('sort_order');
+    }
+
+    public function primaryMedia()
+    {
+        return $this->hasOne(ProductMedia::class)->where('is_primary', true);
+    }
+
     public function primaryImage()
     {
         return $this->hasOne(ProductImage::class)->where('is_primary', true);

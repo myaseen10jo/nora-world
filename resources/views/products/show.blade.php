@@ -306,6 +306,63 @@
         </div>
     </div>
 
+    {{-- Product Media Gallery (Videos & Content) --}}
+    @if($product->media && $product->media->count() > 0)
+    <div class="mt-16 anim-item">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="w-8 h-px bg-stone-300"></div>
+            <p class="text-[11px] text-stone-400 uppercase tracking-[0.25em] font-medium">Media Gallery</p>
+            <div class="flex-1 h-px bg-stone-200"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @foreach($product->media->where('is_active', true)->sortBy('sort_order') as $media)
+            <div class="bg-white rounded-xl border border-stone-100 overflow-hidden">
+                @if($media->type === 'youtube' || $media->type === 'vimeo')
+                    {{-- Video Embed --}}
+                    <div class="aspect-video">
+                        <iframe src="{{ $media->embed_url }}"
+                            class="w-full h-full"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                @elseif($media->type === 'video')
+                    {{-- Uploaded Video --}}
+                    <div class="aspect-video bg-stone-900">
+                        <video controls class="w-full h-full object-cover" poster="{{ $media->display_url }}">
+                            <source src="{{ asset('storage/' . $media->file_path) }}" type="video/mp4">
+                        </video>
+                    </div>
+                @elseif($media->type === 'image')
+                    {{-- Image --}}
+                    <div class="aspect-square">
+                        <img src="{{ $media->display_url }}" alt="{{ $media->title }}" class="w-full h-full object-cover">
+                    </div>
+                @elseif($media->type === 'content')
+                    {{-- Rich Content --}}
+                    <div class="p-6">
+                        <div class="prose prose-sm prose-stone max-w-none">
+                            {!! $media->content_html !!}
+                        </div>
+                    </div>
+                @endif
+
+                @if($media->title)
+                <div class="p-4">
+                    <h3 class="text-sm font-semibold text-stone-900">{{ $media->title }}</h3>
+                    @if($media->description)
+                    <p class="text-xs text-stone-500 mt-1">{{ $media->description }}</p>
+                    @endif
+                </div>
+                @endif
+            </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+
     {{-- Product Story --}}
     @if($product->product_story)
     <div class="mt-16 bg-stone-50 rounded-2xl p-8 md:p-12 anim-item">

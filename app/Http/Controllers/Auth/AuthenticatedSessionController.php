@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
 
         // Redirect admins to Filament panel, regular users to dashboard
         if (Auth::user()->is_admin) {
-            return redirect('/admin');
+            return redirect('/nora-backoffice-2024');
         }
 
         return redirect()->intended(route('dashboard', absolute: false));

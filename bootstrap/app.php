@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Force HTTPS in web middleware (after session is started)
         $middleware->web(append: [
             \App\Http\Middleware\ForceHttpsScheme::class,
+            \App\Http\Middleware\SecurityHeaders::class,
             \App\Http\Middleware\ApplyDesignTheme::class,
         ]);
         $middleware->trustProxies(at: '*');

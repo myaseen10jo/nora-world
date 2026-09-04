@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
+use App\Models\ProductMedia;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -246,6 +247,104 @@ class ProductResource extends Resource
                                     ->requiresConfirmation()
                                     ->modalHeading('Delete Image')
                                     ->modalDescription('Are you sure you want to remove this product image?')
+                                    ->modalSubmitActionLabel('Delete'),
+                            )
+                            ->columnSpanFull(),
+                    ]),
+
+                // ──── Product Media Gallery (Videos & Content) ────
+                Forms\Components\Section::make('Media Gallery')
+                    ->description('Add videos, YouTube/Vimeo embeds, and rich content to this product.')
+                    ->icon('heroicon-o-film')
+                    ->collapsible()
+                    ->schema([
+                        Forms\Components\Repeater::make('media')
+                            ->relationship()
+                            ->schema([
+                                Forms\Components\Grid::make(2)
+                                    ->schema([
+                                        Forms\Components\Select::make('type')
+                                            ->options([
+                                                'image' => 'Image',
+                                                'video' => 'Video Upload',
+                                                'youtube' => 'YouTube Video',
+                                                'vimeo' => 'Vimeo Video',
+                                                'content' => 'Rich Content / Text',
+                                            ])
+                                            ->required()
+                                            ->default('image')
+                                            ->live()
+                                            ->columnSpan(1),
+
+                                        Forms\Components\TextInput::make('title')
+                                            ->label('Title')
+                                            ->maxLength(255)
+                                            ->columnSpan(1),
+                                    ]),
+
+                                // Conditional fields based on type
+                                Forms\Components\Grid::make(2)
+                                    ->schema([
+                                        Forms\Components\FileUpload::make('file_path')
+                                            ->label('File')
+                                            ->image()
+                                            ->imageEditor()
+                                            ->directory('product-media')
+                                            ->visibility('public')
+                                            ->maxSize(51200) // 50MB for videos
+                                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'video/mp4', 'video/webm', 'video/quicktime'])
+                                            ->downloadable(false)
+                                            ->previewable(true)
+                                            ->panelLayout('integrated')
+                                            ->columnSpan(1)
+                                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['image', 'video'])),
+
+                                        Forms\Components\TextInput::make('external_url')
+                                            ->label('Video URL')
+                                            ->url()
+                                            ->placeholder('https://www.youtube.com/watch?v=...')
+                                            ->helperText('Paste YouTube or Vimeo URL')
+                                            ->columnSpan(1)
+                                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['youtube', 'vimeo'])),
+                                    ]),
+
+                                Forms\Components\RichEditor::make('content_html')
+                                    ->label('Rich Content')
+                                    ->columnSpanFull()
+                                    ->visible(fn (Forms\Get $get) => $get('type') === 'content'),
+
+                                Forms\Components\Textarea::make('description')
+                                    ->label('Description')
+                                    ->maxLength(65535)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\Grid::make(3)
+                                    ->schema([
+                                        Forms\Components\Toggle::make('is_primary')
+                                            ->label('Primary Media')
+                                            ->default(false)
+                                            ->inline(false),
+                                        Forms\Components\Toggle::make('is_active')
+                                            ->label('Active')
+                                            ->default(true),
+                                        Forms\Components\TextInput::make('sort_order')
+                                            ->label('Sort')
+                                            ->numeric()
+                                            ->default(0),
+                                    ]),
+                            ])
+                            ->columns(1)
+                            ->defaultItems(0)
+                            ->addActionLabel('Add Media')
+                            ->reorderable('sort_order')
+                            ->reorderableWithButtons()
+                            ->collapsible()
+                            ->itemHeading(fn (array $state): ?string => $state['title'] ?? ucfirst($state['type'] ?? 'Media'))
+                            ->deleteAction(
+                                fn ($action) => $action
+                                    ->requiresConfirmation()
+                                    ->modalHeading('Delete Media')
+                                    ->modalDescription('Are you sure you want to remove this media item?')
                                     ->modalSubmitActionLabel('Delete'),
                             )
                             ->columnSpanFull(),

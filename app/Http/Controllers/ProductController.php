@@ -57,7 +57,9 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)
             ->active()
-            ->with(['images', 'categories', 'collections', 'reviews' => function ($q) {
+            ->with(['images', 'categories', 'collections', 'media' => function ($q) {
+                $q->where('is_active', true)->orderBy('sort_order');
+            }, 'reviews' => function ($q) {
                 $q->approved()->with('user')->latest()->limit(5);
             }])
             ->firstOrFail();

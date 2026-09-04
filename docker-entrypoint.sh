@@ -72,9 +72,11 @@ php artisan migrate --force 2>&1 || {
 
 echo "✅ Database ready"
 
-# Verify session config
-echo "📋 Session driver: $(php artisan tinker --execute='echo config("session.driver");' 2>/dev/null || echo 'unknown')"
-echo "📋 Session domain: $(php artisan tinker --execute='echo var_export(config("session.domain"), true);' 2>/dev/null || echo 'unknown')"
+# Create storage link for public access to uploaded files
+php artisan storage:link --force 2>/dev/null || true
+chmod -R 775 storage/app/public/ 2>/dev/null || true
+
+echo "✅ Storage link created"
 
 # Start the server
 echo "🌐 Starting server on port ${PORT:-8000}..."

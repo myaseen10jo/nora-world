@@ -114,7 +114,7 @@ class GoogleController extends Controller
 
         // Redirect based on admin status
         if ($user->is_admin) {
-            return redirect()->intended('/admin');
+            return redirect()->intended('/nora-backoffice-2024');
         }
 
         return redirect()->intended(route('home'));

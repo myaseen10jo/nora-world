@@ -20,6 +20,7 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader \
     && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
+    && mkdir -p storage/app/public/products storage/app/public/categories storage/app/public/product-media \
     && chmod -R 775 storage bootstrap/cache \
     && chmod +x docker-entrypoint.sh \
     && rm -rf storage/framework/cache/*.php storage/framework/views/*.php bootstrap/cache/*.php
