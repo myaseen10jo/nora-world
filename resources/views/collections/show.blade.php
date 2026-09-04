@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $collection->name . ' - NORA WORLD')
+@section('title', $collection->name . ' - عالم نورا للكنوز')
 
 @section('content')
 <div class="pt-24 pb-16">

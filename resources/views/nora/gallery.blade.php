@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Collection Gallery — NORA WORLD')
+@section('title', 'Collection Gallery — عالم نورا للكنوز')
 
 @section('content')
 <div x-data="{ activeCategory: 'all' }">

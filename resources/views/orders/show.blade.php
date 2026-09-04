@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Order #' . $order->order_number . ' - NORA WORLD')
+@section('title', 'Order #' . $order->order_number . ' - عالم نورا للكنوز')
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 py-8">
