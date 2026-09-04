@@ -12,6 +12,15 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\TwoFactorController;
+
+// 2FA Verification (during login - no auth required)
+Route::middleware('web')->group(function () {
+    Route::get('two-factor-challenge', [TwoFactorController::class, 'showVerify'])
+        ->name('2fa.showVerify');
+    Route::post('two-factor-challenge', [TwoFactorController::class, 'verify'])
+        ->name('2fa.verify');
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -66,4 +75,16 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+});
+
+// 2FA Management (requires auth)
+Route::middleware('auth')->prefix('two-factor')->group(function () {
+    Route::get('setup', [TwoFactorController::class, 'showSetup'])
+        ->name('2fa.showSetup');
+    Route::post('enable', [TwoFactorController::class, 'enable'])
+        ->name('2fa.enable');
+    Route::get('disable', [TwoFactorController::class, 'showDisable'])
+        ->name('2fa.showDisable');
+    Route::delete('disable', [TwoFactorController::class, 'disable'])
+        ->name('2fa.disable');
 });

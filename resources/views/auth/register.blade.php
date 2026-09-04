@@ -69,6 +69,12 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <x-captcha :error="$errors->first('captcha')" />
+
+        @error('captcha')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+
         <div class="flex items-center justify-between mt-5">
             <a class="text-sm text-stone-500 hover:text-stone-800 transition-colors" href="{{ route('login') }}">
                 {{ __('Already have an account?') }}

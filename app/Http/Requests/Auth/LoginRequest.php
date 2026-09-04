@@ -30,6 +30,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'cf-turnstile-response' => ['nullable', 'string'],
         ];
     }
 
@@ -42,6 +43,14 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        // Verify CAPTCHA
+        $captchaService = app(\App\Services\CaptchaService::class);
+        if (!$captchaService->verify($this->input('cf-turnstile-response'), $this->ip())) {
+            throw ValidationException::withMessages([
+                'captcha' => 'CAPTCHA verification failed. Please try again.',
+            ]);
+        }
+
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
@@ -51,6 +60,18 @@ class LoginRequest extends FormRequest
         }
 
         RateLimiter::clear($this->throttleKey());
+
+        // Check if 2FA is enabled
+        $user = Auth::user();
+        if ($user && $user->two_factor_enabled) {
+            Auth::logout();
+            session(['2fa_user_id' => $user->id]);
+            throw ValidationException::withMessages([
+                'email' => 'Please enter your two-factor authentication code.',
+            ])->response(
+                redirect()->route('2fa.showVerify')
+            );
+        }
     }
 
     /**

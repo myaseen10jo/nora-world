@@ -34,7 +34,16 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'cf-turnstile-response' => ['nullable', 'string'],
         ]);
+
+        // Verify CAPTCHA
+        $captchaService = app(\App\Services\CaptchaService::class);
+        if (!$captchaService->verify($request->input('cf-turnstile-response'), $request->ip())) {
+            throw ValidationException::withMessages([
+                'captcha' => ['CAPTCHA verification failed. Please try again.'],
+            ]);
+        }
 
         $user = User::create([
             'name' => $request->name,

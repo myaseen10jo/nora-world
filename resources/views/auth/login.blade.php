@@ -62,6 +62,12 @@
             </label>
         </div>
 
+        <x-captcha :error="$errors->first('captcha')" />
+
+        @error('captcha')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+
         <div class="flex items-center justify-between mt-5">
             @if (Route::has('password.request'))
                 <a class="text-sm text-stone-500 hover:text-stone-800 transition-colors" href="{{ route('password.request') }}">
