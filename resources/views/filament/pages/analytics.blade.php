@@ -1,19 +1,16 @@
-<x-filament-panels::page
-    @filament-panels::page-heading-tag
-        <div class="flex items-center gap-3">
-            <div class="flex items-center gap-2 bg-white dark:bg-white/5 rounded-lg p-1">
-                @foreach(['7d' => '7 Days', '30d' => '30 Days', '90d' => '90 Days', '1y' => '1 Year'] as $value => $label)
-                <button
-                    wire:click="mountAction('setDateRange', '{{ $value }}')"
-                    class="px-3 py-1.5 text-sm font-medium rounded-md transition-all {{ $dateRange === $value ? 'bg-primary-600 text-white shadow-sm' : 'text-gray-500 hover:text-gray-700' }}"
-                >
-                    {{ $label }}
-                </button>
-                @endforeach
-            </div>
+<x-filament-panels::page>
+    <div class="flex items-center gap-3 mb-6">
+        <div class="flex items-center gap-2 bg-white dark:bg-white/5 rounded-lg p-1">
+            @foreach(['7d' => '7 Days', '30d' => '30 Days', '90d' => '90 Days', '1y' => '1 Year'] as $value => $label)
+            <button
+                wire:click="mountAction('setDateRange', '{{ $value }}')"
+                class="px-3 py-1.5 text-sm font-medium rounded-md transition-all {{ $dateRange === $value ? 'bg-primary-600 text-white shadow-sm' : 'text-gray-500 hover:text-gray-700' }}"
+            >
+                {{ $label }}
+            </button>
+            @endforeach
         </div>
-    @end
->
+    </div>
     @php
         $stats = $this->getStats();
         $salesData = $this->getSalesOverTimeData();
