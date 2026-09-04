@@ -38,11 +38,9 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 page-enter" style="animation-delay: 0.45s;">
-                    <a href="{{ route('nora.gallery') }}" class="bg-white text-stone-900 px-8 py-4 rounded-xl font-medium text-sm tracking-wide uppercase transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-2.5">
+                    <a href="{{ route('nora.gallery') }}" class="bg-white text-stone-900 px-8 py-4 rounded-xl font-medium text-sm tracking-wide uppercase transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-3">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
                         Explore Collection
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
                     </a>
                     <a href="{{ route('nora.about') }}" class="border border-white/20 text-white px-8 py-4 rounded-xl font-medium text-sm tracking-wide uppercase transition-all duration-300 hover:bg-white/5 hover:border-white/30 flex items-center justify-center gap-2">
                         Our Story
@@ -82,30 +80,36 @@
             <p class="section-subheading mx-auto">Each category tells a story of craft, heritage, and the quiet beauty of things that last</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             @php
-            $categoryIcons = [
-                'Ceramics & Glassware' => '🏺',
-                'Decorative Objects & Art' => '🪆',
-                'Watches & Jewellery' => '⌚',
-                'Collectibles' => '🏆',
-                'Collectibles & Commemorative' => '🏆',
-                'Accessories & Handbags' => '👜',
+            $categorySvgIcons = [
+                'Ceramics & Glassware' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714a2.25 2.25 0 0 0 .659 1.591L19 14.5m-3.75-4.384c.251.023.501.05.75.082M12 21a8.966 8.966 0 0 1-5.982-2.275M12 21a8.966 8.966 0 0 0 5.982-2.275M15.75 3.186a24.287 24.287 0 0 1 2.768.954M6.228 3.186A24.287 24.287 0 0 0 3.46 4.14m12.08 0c.114.166.226.331.34.497m-12.8 0c.114-.166.226-.331.34-.497m12.12 0c-.114.166-.226.331-.34.497M3.46 4.14A24.287 24.287 0 0 1 6.228 3.186" /></svg>',
+                'Decorative Objects & Art' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21" /></svg>',
+                'Watches & Jewellery' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>',
+                'Collectibles' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.996.128-1.946.365-2.846.706A18.134 18.134 0 0 0 3.46 7.4a24.566 24.566 0 0 1 4.293 4.293m0 0a24.534 24.534 0 0 0 4.293-4.293A18.134 18.134 0 0 0 12 3.568c-.9.341-1.85.578-2.846.706m5.093 9.565a7.454 7.454 0 0 1-.982-3.172" /></svg>',
+                'Collectibles & Commemorative' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.996.128-1.946.365-2.846.706A18.134 18.134 0 0 0 3.46 7.4a24.566 24.566 0 0 1 4.293 4.293m0 0a24.534 24.534 0 0 0 4.293-4.293A18.134 18.134 0 0 0 12 3.568c-.9.341-1.85.578-2.846.706m5.093 9.565a7.454 7.454 0 0 1-.982-3.172" /></svg>',
+                'Accessories & Handbags' => '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>',
             ];
             @endphp
             @foreach($featuredCategories as $index => $cat)
-            <a href="{{ route('products.index', ['category' => $cat->slug]) }}" class="category-card group reveal overflow-hidden" style="transition-delay: {{ $index * 0.08 }}s;">
+            <a href="{{ route('products.index', ['category' => $cat->slug]) }}" class="category-card group reveal overflow-hidden text-center" style="transition-delay: {{ $index * 0.08 }}s;">
                 @if($cat->image)
-                    <div class="w-full h-32 overflow-hidden rounded-lg mb-3">
-                        <img src="{{ asset('storage/' . $cat->image) }}" alt="{{ $cat->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="w-full h-32 overflow-hidden rounded-xl mb-4">
+                        @php
+                            $catImgPath = ltrim($cat->image, '/');
+                            $catImgSrc = file_exists(public_path($catImgPath)) ? asset($catImgPath) : asset('storage/' . $cat->image);
+                        @endphp
+                        <img src="{{ $catImgSrc }}" alt="{{ $cat->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
                 @else
-                    <span class="text-3xl block mb-3 group-hover:scale-110 transition-transform duration-300">{{ $categoryIcons[$cat->name] ?? '📦' }}</span>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-stone-50 rounded-2xl flex items-center justify-center text-stone-600 group-hover:bg-stone-900 group-hover:text-white transition-all duration-300">
+                        {!! $categorySvgIcons[$cat->name] ?? '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>' !!}
+                    </div>
                 @endif
-                <h3 class="text-sm font-semibold text-stone-800 mb-1">{{ $cat->name }}</h3>
-                <p class="text-[10px] text-stone-400">{{ $cat->products_count }} {{ Str::plural('item', $cat->products_count) }}</p>
-                <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span class="text-[10px] font-medium text-stone-500 uppercase tracking-wider">Browse →</span>
+                <h3 class="text-sm font-semibold text-stone-800 mb-1 group-hover:text-stone-900">{{ $cat->name }}</h3>
+                <p class="text-[11px] text-stone-400 mb-3">{{ $cat->products_count }} {{ Str::plural('item', $cat->products_count) }}</p>
+                <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                    <span class="text-[11px] font-medium text-stone-500 uppercase tracking-wider">Browse Collection →</span>
                 </div>
             </a>
             @endforeach
@@ -139,7 +143,12 @@
             @foreach($displayProducts as $index => $product)
             @php
                 $img = $product->primaryImage ?? $product->images->first();
-                $imgPath = $img ? asset('storage/' . $img->path) : asset('images/placeholder-product.svg');
+                if ($img) {
+                    $trimmed = ltrim($img->path, '/');
+                    $imgPath = file_exists(public_path($trimmed)) ? asset($trimmed) : asset('storage/' . $img->path);
+                } else {
+                    $imgPath = asset('images/placeholder-product.svg');
+                }
                 $catName = $product->categories->first()?->name ?? '';
             @endphp
             <a href="{{ route('products.show', $product->slug) }}" class="product-card group block reveal" style="transition-delay: {{ $index * 0.06 }}s;">
@@ -160,7 +169,8 @@
                         </span>
                     @endif
                     @if($product->is_one_of_a_kind)
-                        <span class="absolute top-3 left-3 bg-amber-500/90 text-white text-[10px] font-medium px-2.5 py-1 rounded-full backdrop-blur-sm">
+                        <span class="absolute top-3 left-3 bg-amber-500/90 text-white text-[10px] font-medium px-2.5 py-1 rounded-full backdrop-blur-sm inline-flex items-center gap-1">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             One of a Kind
                         </span>
                     @endif
