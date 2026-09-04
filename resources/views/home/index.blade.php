@@ -131,7 +131,7 @@
         </div>
 
         @php
-            $displayProducts = $bestSellers->count() > 0 ? $bestSellers : $newArrivals->count() > 0 ? $newArrivals : $onSale;
+            $displayProducts = $bestSellers->count() > 0 ? $bestSellers : ($newArrivals->count() > 0 ? $newArrivals : $onSale);
         @endphp
 
         @if($displayProducts->count() > 0)
