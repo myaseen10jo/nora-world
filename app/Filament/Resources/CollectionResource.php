@@ -14,7 +14,7 @@ class CollectionResource extends Resource
 {
     protected static ?string $model = Collection::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-square-3-stack-3d';
 
     protected static ?string $navigationGroup = 'Catalog';
 
