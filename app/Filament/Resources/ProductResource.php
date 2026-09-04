@@ -241,7 +241,7 @@ class ProductResource extends Resource
                             ->reorderable('sort_order')
                             ->reorderableWithButtons()
                             ->collapsible()
-                            ->itemHeading(fn (array $state): ?string => $state['alt_text'] ?? ($state['path'] ? 'Image' : 'New Image'))
+                            ->itemLabel(fn (array $state): ?string => $state['alt_text'] ?? ($state['path'] ? 'Image' : 'New Image'))
                             ->deleteAction(
                                 fn ($action) => $action
                                     ->requiresConfirmation()
@@ -339,7 +339,7 @@ class ProductResource extends Resource
                             ->reorderable('sort_order')
                             ->reorderableWithButtons()
                             ->collapsible()
-                            ->itemHeading(fn (array $state): ?string => $state['title'] ?? ucfirst($state['type'] ?? 'Media'))
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? ucfirst($state['type'] ?? 'Media'))
                             ->deleteAction(
                                 fn ($action) => $action
                                     ->requiresConfirmation()
