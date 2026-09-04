@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="description" content="NORA WORLD — From Our Home to Yours. Vintage, Collectibles, Art, and Pre-Loved Treasures.">
 
-        <title>@yield('title', 'عالم نورا للكنوز — من بيوتنا لبيتك')</title>
+        <title>@yield('title', 'NORA WORLD — From Our Home to Yours')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 
         @stack('styles')
     </head>
-    <body class="bg-[#faf5ef] text-gray-900 antialiased font-sans" data-theme="{{ $designTheme ?? 'pro' }}" data-animation="{{ $designAnimation ?? 'reveal' }}">
+    <body class="bg-[#faf9f7] text-gray-900 antialiased" data-theme="{{ $designTheme ?? 'pro' }}" data-animation="{{ $designAnimation ?? 'reveal' }}">
         <div class="min-h-screen">
             @include('layouts.navigation')
 

@@ -5,7 +5,7 @@
             {{-- Logo --}}
             <div class="shrink-0 flex items-center">
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-                    <img src="{{ asset('images/nora/logo-new.png') }}" alt="عالم نورا للكنوز" class="h-10 w-auto object-contain">
+                    <img src="{{ asset('images/nora/logo.jpeg') }}" alt="NORA WORLD" class="h-8 w-auto object-contain">
                 </a>
             </div>
 
@@ -211,7 +211,7 @@
         <div class="flex justify-between h-16 items-center">
             <div class="shrink-0 flex items-center">
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-                    <img src="{{ asset('images/nora/logo-new.png') }}" alt="عالم نورا للكنوز" class="h-10 w-auto object-contain">
+                    <img src="{{ asset('images/nora/logo.jpeg') }}" alt="NORA WORLD" class="h-8 w-auto object-contain">
                 </a>
             </div>
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $product->name . ' - عالم نورا للكنوز')
+@section('title', $product->name . ' - NORA WORLD')
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 page-transition-enter">
@@ -53,7 +53,7 @@
         {{-- Product Info --}}
         <div class="anim-item anim-delay-3">
             {{-- Category & Badge --}}
-            <div class="flex items-center gap-2 mb-4">
+            <div class="flex items-center gap-2 mb-3">
                 @foreach($product->categories as $category)
                     <span class="badge">{{ $category->name }}</span>
                 @endforeach
@@ -64,12 +64,9 @@
                 @endif
             </div>
 
-            <h1 class="text-3xl md:text-4xl font-serif font-bold text-stone-900 tracking-tight mb-3 leading-tight">
+            <h1 class="text-3xl md:text-4xl font-serif font-bold text-stone-900 tracking-tight mb-3">
                 {{ $product->name }}
             </h1>
-            @if($product->sku)
-            <p class="text-[11px] text-stone-400 font-mono mb-4">رقم القطعة: {{ $product->sku }}</p>
-            @endif
 
             @if($product->artisan_name)
             <p class="text-sm text-stone-500 mb-4">by {{ $product->artisan_name }}</p>
@@ -139,7 +136,7 @@
                 <div class="flex items-start gap-3">
                     <span class="text-stone-300 mt-0.5">📏</span>
                     <div>
-                        <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">المقاس</p>
+                        <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Size</p>
                         <p class="text-sm text-stone-600 mt-0.5">{{ $product->clothing_size }}</p>
                     </div>
                 </div>
@@ -149,7 +146,7 @@
                 <div class="flex items-start gap-3">
                     <span class="text-stone-300 mt-0.5">📋</span>
                     <div>
-                        <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">سياسة الإرجاع</p>
+                        <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Return Policy</p>
                         <p class="text-sm text-stone-600 mt-0.5">{{ $product->return_policy }}</p>
                     </div>
                 </div>
@@ -159,7 +156,7 @@
                 <div class="flex items-start gap-3">
                     <span class="text-stone-300 mt-0.5">⏱</span>
                     <div>
-                        <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">وقت التحضير</p>
+                        <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Preparation Time</p>
                         <p class="text-sm text-stone-600 mt-0.5">{{ $product->estimated_preparation_time }}</p>
                     </div>
                 </div>
@@ -169,8 +166,8 @@
                 <div class="flex items-start gap-3">
                     <span class="text-stone-300 mt-0.5">🎁</span>
                     <div>
-                        <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">تغليف هدايا</p>
-                        <p class="text-sm text-stone-600 mt-0.5">متاح عند الطلب</p>
+                        <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Gift Wrapping</p>
+                        <p class="text-sm text-stone-600 mt-0.5">Available on request</p>
                     </div>
                 </div>
                 @endif
@@ -184,28 +181,48 @@
     <div class="mt-16 anim-item">
         <div class="flex items-center gap-3 mb-8">
             <div class="w-8 h-px bg-stone-300"></div>
-            <p class="text-[11px] text-stone-400 uppercase tracking-[0.25em] font-medium">المواصفات</p>
+            <p class="text-[11px] text-stone-400 uppercase tracking-[0.25em] font-medium">Extracted Specifications</p>
             <div class="flex-1 h-px bg-stone-200"></div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{-- Return Policy Card --}}
+            <div class="bg-white rounded-xl p-6 border border-stone-100">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="text-lg">📋</span>
+                    <h3 class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Return Policy</h3>
+                </div>
+                <div class="space-y-3">
+                    @if($product->return_policy)
+                    <div>
+                        <p class="text-sm font-medium text-stone-800">{{ $product->return_policy }}</p>
+                    </div>
+                    @else
+                    <div>
+                        <p class="text-sm text-stone-500">Final sale — no returns accepted</p>
+                        <p class="text-xs text-stone-400 mt-1">All items are pre-loved vintage — please review description and photos before purchasing</p>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
             {{-- Color & Appearance Card --}}
             <div class="bg-white rounded-xl p-6 border border-stone-100">
                 <div class="flex items-center gap-2 mb-4">
                     <span class="text-lg">🎨</span>
-                    <h3 class="text-xs font-semibold text-stone-900 uppercase tracking-wider">اللون والمظهر</h3>
+                    <h3 class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Color & Appearance</h3>
                 </div>
                 <div class="space-y-3">
                     @if($product->color_palette)
                     <div>
-                        <p class="text-xs text-stone-400">لوحة الألوان</p>
+                        <p class="text-xs text-stone-400">Color Palette</p>
                         <p class="text-sm font-medium text-stone-800">{{ $product->color_palette }}</p>
                     </div>
                     @endif
                     <div class="flex gap-4">
                         @if($product->color_primary)
                         <div>
-                            <p class="text-[10px] text-stone-400 uppercase">اللون الأساسي</p>
+                            <p class="text-[10px] text-stone-400 uppercase">Primary</p>
                             <div class="flex items-center gap-2 mt-1">
                                 <span class="w-4 h-4 rounded-full border border-stone-200" style="background: {{ $getColorHex($product->color_primary) }}"></span>
                                 <p class="text-sm font-medium text-stone-800">{{ $product->color_primary }}</p>
@@ -214,7 +231,7 @@
                         @endif
                         @if($product->color_secondary)
                         <div>
-                            <p class="text-[10px] text-stone-400 uppercase">اللون الثانوي</p>
+                            <p class="text-[10px] text-stone-400 uppercase">Secondary</p>
                             <div class="flex items-center gap-2 mt-1">
                                 <span class="w-4 h-4 rounded-full border border-stone-200" style="background: {{ $getColorHex($product->color_secondary) }}"></span>
                                 <p class="text-sm font-medium text-stone-800">{{ $product->color_secondary }}</p>
@@ -229,45 +246,25 @@
             <div class="bg-white rounded-xl p-6 border border-stone-100">
                 <div class="flex items-center gap-2 mb-4">
                     <span class="text-lg">🔍</span>
-                    <h3 class="text-xs font-semibold text-stone-900 uppercase tracking-wider">الحالة والعمر</h3>
+                    <h3 class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Condition & Age</h3>
                 </div>
                 <div class="space-y-3">
                     @if($product->condition)
                     <div>
-                        <p class="text-xs text-stone-400">الحالة</p>
+                        <p class="text-xs text-stone-400">Condition</p>
                         <p class="text-sm font-medium text-stone-800">{{ $product->condition }}</p>
                     </div>
                     @endif
                     @if($product->age_estimate)
                     <div>
-                        <p class="text-xs text-stone-400">تقدير العمر</p>
+                        <p class="text-xs text-stone-400">Age Estimate</p>
                         <p class="text-sm font-medium text-stone-800">{{ $product->age_estimate }}</p>
                     </div>
                     @endif
                     @if($product->style_notes)
                     <div>
-                        <p class="text-xs text-stone-400">ملاحظات الأسلوب</p>
+                        <p class="text-xs text-stone-400">Style Notes</p>
                         <p class="text-sm font-medium text-stone-800">{{ $product->style_notes }}</p>
-                    </div>
-                    @endif
-                </div>
-            </div>
-
-            {{-- Return Policy Card --}}
-            <div class="bg-white rounded-xl p-6 border border-stone-100">
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="text-lg">📋</span>
-                    <h3 class="text-xs font-semibold text-stone-900 uppercase tracking-wider">سياسة الإرجاع</h3>
-                </div>
-                <div class="space-y-3">
-                    @if($product->return_policy)
-                    <div>
-                        <p class="text-sm font-medium text-stone-800">{{ $product->return_policy }}</p>
-                    </div>
-                    @else
-                    <div>
-                        <p class="text-sm text-stone-500">البيع نهائي — لا يُسمح بالإرجاع</p>
-                        <p class="text-xs text-stone-400 mt-1">جميع القطع vintage و مستعملة — يُرجى مراجعة الوصف والصور قبل الشراء</p>
                     </div>
                     @endif
                 </div>
@@ -362,7 +359,7 @@
         <div class="bg-white rounded-xl p-5 border border-stone-100 flex items-center gap-3">
             <span class="text-xl">📦</span>
             <div>
-                <p class="text-[10px] text-stone-400 uppercase tracking-wider">التحضير</p>
+                <p class="text-[10px] text-stone-400 uppercase tracking-wider">Preparation</p>
                 <p class="text-sm font-medium text-stone-800">{{ $product->estimated_preparation_time }}</p>
             </div>
         </div>
@@ -371,7 +368,7 @@
         <div class="bg-white rounded-xl p-5 border border-stone-100 flex items-center gap-3">
             <span class="text-xl">✈️</span>
             <div>
-                <p class="text-[10px] text-stone-400 uppercase tracking-wider">الشحن</p>
+                <p class="text-[10px] text-stone-400 uppercase tracking-wider">Shipping</p>
                 <p class="text-sm font-medium text-stone-800">{{ $product->estimated_shipping_time }}</p>
             </div>
         </div>
@@ -380,7 +377,7 @@
         <div class="bg-white rounded-xl p-5 border border-stone-100 flex items-center gap-3">
             <span class="text-xl">🌍</span>
             <div>
-                <p class="text-[10px] text-stone-400 uppercase tracking-wider">المنشأ</p>
+                <p class="text-[10px] text-stone-400 uppercase tracking-wider">Origin</p>
                 <p class="text-sm font-medium text-stone-800">{{ $product->origin_country }}</p>
             </div>
         </div>
