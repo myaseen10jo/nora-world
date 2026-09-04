@@ -174,6 +174,23 @@ class ProductResource extends Resource
                             ->default(false),
                     ])->columns(3),
 
+                Forms\Components\Section::make('Return Policy & Clothing Size')
+                    ->schema([
+                        Forms\Components\Select::make('return_policy')
+                            ->options([
+                                'لا يُسمح بالإرجاع — البيع نهائي' => 'لا يُسمح بالإرجاع — البيع نهائي',
+                                'يُسمح بالإرجاع خلال ٧ أيام' => 'يُسمح بالإرجاع خلال ٧ أيام',
+                                'يُسمح بالإرجاع خلال ١٤ يوم' => 'يُسمح بالإرجاع خلال ١٤ يوم',
+                                'يُسمح بالإرجاع خلال ٣٠ يوم' => 'يُسمح بالإرجاع خلال ٣٠ يوم',
+                            ])
+                            ->searchable()
+                            ->preload()
+                            ->helperText('حدد سياسة الإرجاع لهذه القطعة'),
+                        Forms\Components\TextInput::make('clothing_size')
+                            ->maxLength(255)
+                            ->helperText('مثال: S, M, L, XL, 42, 44 — فقط للملابس'),
+                    ])->columns(2),
+
                 // ──── Product Images Gallery ────
                 Forms\Components\Section::make('Product Images')
                     ->description('Upload high-quality product photos. The first image marked as primary will be used as the main product image on the storefront.')
@@ -236,8 +253,8 @@ class ProductResource extends Resource
                                     ]),
                             ])
                             ->columns(1)
-                            ->defaultItems(1)
-                            ->addActionLabel('Add Image')
+                            ->defaultItems(5)
+                            ->addActionLabel('إضافة صورة')
                             ->reorderable('sort_order')
                             ->reorderableWithButtons()
                             ->collapsible()

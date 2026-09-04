@@ -53,24 +53,29 @@
 
     {{-- Thumbnails --}}
     @if(!$isEmpty && count($imageList) > 1)
-    <div class="grid grid-cols-4 gap-3">
+    <div class="grid grid-cols-5 gap-3">
         @foreach($images as $idx => $image)
-        <button
-            type="button"
-            @click="goTo({{ $idx }})"
-            class="aspect-square bg-stone-50 rounded-xl overflow-hidden cursor-pointer transition-all duration-300"
-            :class="{
-                'ring-2 ring-stone-900 ring-offset-2': currentIndex === {{ $idx }},
-                'hover:ring-2 hover:ring-stone-300 hover:ring-offset-1 opacity-70 hover:opacity-100': currentIndex !== {{ $idx }}
-            }"
-        >
-            <img
-                src="{{ $imagePath($image->path) }}"
-                alt="{{ $image->alt_text }}"
-                class="w-full h-full object-cover"
-                loading="lazy"
+        <div class="text-center">
+            <button
+                type="button"
+                @click="goTo({{ $idx }})"
+                class="aspect-square bg-stone-50 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 block w-full"
+                :class="{
+                    'ring-2 ring-stone-900 ring-offset-2': currentIndex === {{ $idx }},
+                    'hover:ring-2 hover:ring-stone-300 hover:ring-offset-1 opacity-70 hover:opacity-100': currentIndex !== {{ $idx }}
+                }"
             >
-        </button>
+                <img
+                    src="{{ $imagePath($image->path) }}"
+                    alt="{{ $image->alt_text }}"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                >
+            </button>
+            @if($image->alt_text)
+            <p class="text-[10px] text-stone-400 mt-1.5 truncate px-1">{{ $image->alt_text }}</p>
+            @endif
+        </div>
         @endforeach
     </div>
     @endif

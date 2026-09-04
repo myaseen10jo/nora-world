@@ -41,6 +41,8 @@ class Product extends Model
         'is_made_to_order',
         'cultural_note',
         'gift_wrapping_available',
+        'return_policy',
+        'clothing_size',
         'color_palette',
         'color_primary',
         'color_secondary',

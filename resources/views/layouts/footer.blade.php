@@ -5,10 +5,10 @@
             {{-- Brand --}}
             <div class="md:col-span-4">
                 <div class="flex items-center gap-2.5 mb-5">
-                    <img src="{{ asset('images/nora/logo.jpeg') }}" alt="NORA WORLD" class="h-7 w-auto object-contain opacity-90">
+                    <img src="{{ asset('images/nora/logo-new.png') }}" alt="عالم نورا للكنوز" class="h-9 w-auto object-contain opacity-90">
                 </div>
                 <p class="text-stone-500 text-sm leading-relaxed mb-6 max-w-xs">
-                    From Our Home to Yours. Vintage • Collectibles • Art • Pre-Loved Treasures.
+                    عالم نورا للكنوز — من بيوتنا لبيتك. قطع فريدة تحكي قصصاً.
                 </p>
                 <p class="text-stone-600 text-xs leading-relaxed max-w-xs">
                     Every piece has lived a story. Now it is ready to begin another — with you.
@@ -30,11 +30,10 @@
             <div class="md:col-span-3">
                 <h4 class="text-[11px] font-semibold text-stone-300 uppercase tracking-widest mb-5">Categories</h4>
                 <ul class="space-y-3">
-                    <li><a href="{{ route('products.index', ['category' => 'ceramics-glassware']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">Ceramics & Glassware</a></li>
-                    <li><a href="{{ route('products.index', ['category' => 'decorative-objects-art']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">Decorative Objects & Art</a></li>
-                    <li><a href="{{ route('products.index', ['category' => 'watches-jewellery']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">Watches & Jewellery</a></li>
-                    <li><a href="{{ route('products.index', ['category' => 'collectibles-commemorative']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">Collectibles</a></li>
-                    <li><a href="{{ route('products.index', ['category' => 'accessories-handbags']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">Accessories & Handbags</a></li>
+                    <li><a href="{{ route('products.index', ['category' => 'zajagiat-antique-vintage']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">زجاجيات انتيك و فينتيج</a></li>
+                    <li><a href="{{ route('products.index', ['category' => 'maqtniat-nisaiyah']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">مقتنيات نسائية</a></li>
+                    <li><a href="{{ route('products.index', ['category' => 'tuhaf-w-rusumat']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">تحف ورسومات</a></li>
+                    <li><a href="{{ route('products.index', ['category' => 'mutafarriqat']) }}" class="text-sm text-stone-500 hover:text-amber-400 transition-colors">متفرقات</a></li>
                 </ul>
             </div>
 
@@ -62,7 +61,7 @@
         {{-- Bottom Bar --}}
         <div class="py-6 border-t border-stone-800 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p class="text-stone-600 text-xs">
-                © {{ date('Y') }} NORA WORLD. All rights reserved.
+                © {{ date('Y') }} عالم نورا للكنوز. All rights reserved.
             </p>
             <div class="flex items-center gap-6">
                 <div class="flex items-center gap-1.5 text-stone-600 text-xs">
