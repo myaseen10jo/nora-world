@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'NORA WORLD WORLD — Vintage • Collectibles • Art • Pre-Loved Treasures')
+@section('title', 'NORA WORLD — Vintage • Collectibles • Art • Pre-Loved Treasures')
 
 @section('content')
 <div x-data="scrollReveal()" x-init="init()">
@@ -82,22 +82,28 @@
             <p class="section-subheading mx-auto">Each category tells a story of craft, heritage, and the quiet beauty of things that last</p>
         </div>
 
-        @php
-        $categories = [
-            ['icon' => '🏺', 'name' => 'Ceramics & Glassware', 'slug' => 'ceramics-glassware', 'desc' => 'Vintage tableware carrying the warmth of homes'],
-            ['icon' => '🪆', 'name' => 'Decorative Objects & Art', 'slug' => 'decorative-objects-art', 'desc' => 'Art and objects that bring character to any space'],
-            ['icon' => '⌚', 'name' => 'Watches & Jewellery', 'slug' => 'watches-jewellery', 'desc' => 'Timepieces ready for new chapters'],
-            ['icon' => '🏆', 'name' => 'Collectibles', 'slug' => 'collectibles-commemorative', 'desc' => 'Treasures telling stories of culture and craft'],
-            ['icon' => '👜', 'name' => 'Accessories & Handbags', 'slug' => 'accessories-handbags', 'desc' => 'Pre-loved treasures ready to be cherished'],
-        ];
-        @endphp
-
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            @foreach($categories as $index => $cat)
-            <a href="{{ route('products.index', ['category' => $cat['slug']]) }}" class="category-card group reveal" style="transition-delay: {{ $index * 0.08 }}s;">
-                <span class="text-3xl block mb-3 group-hover:scale-110 transition-transform duration-300">{{ $cat['icon'] }}</span>
-                <h3 class="text-sm font-semibold text-stone-800 mb-1">{{ $cat['name'] }}</h3>
-                <p class="text-[11px] text-stone-400 leading-relaxed">{{ $cat['desc'] }}</p>
+            @php
+            $categoryIcons = [
+                'Ceramics & Glassware' => '🏺',
+                'Decorative Objects & Art' => '🪆',
+                'Watches & Jewellery' => '⌚',
+                'Collectibles' => '🏆',
+                'Collectibles & Commemorative' => '🏆',
+                'Accessories & Handbags' => '👜',
+            ];
+            @endphp
+            @foreach($featuredCategories as $index => $cat)
+            <a href="{{ route('products.index', ['category' => $cat->slug]) }}" class="category-card group reveal overflow-hidden" style="transition-delay: {{ $index * 0.08 }}s;">
+                @if($cat->image)
+                    <div class="w-full h-32 overflow-hidden rounded-lg mb-3">
+                        <img src="{{ asset('storage/' . $cat->image) }}" alt="{{ $cat->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                @else
+                    <span class="text-3xl block mb-3 group-hover:scale-110 transition-transform duration-300">{{ $categoryIcons[$cat->name] ?? '📦' }}</span>
+                @endif
+                <h3 class="text-sm font-semibold text-stone-800 mb-1">{{ $cat->name }}</h3>
+                <p class="text-[10px] text-stone-400">{{ $cat->products_count }} {{ Str::plural('item', $cat->products_count) }}</p>
                 <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span class="text-[10px] font-medium text-stone-500 uppercase tracking-wider">Browse →</span>
                 </div>
@@ -125,23 +131,20 @@
         </div>
 
         @php
-        $showcaseProducts = [
-            ['image' => 'product-01.jpeg', 'name' => 'Vintage Ceramic Vase', 'slug' => 'vintage-ceramic-vase', 'category' => 'Ceramics & Glassware', 'price' => '$45'],
-            ['image' => 'product-05.jpeg', 'name' => 'Folk Art Doll', 'slug' => 'handmade-folk-art-doll', 'category' => 'Decorative Objects & Art', 'price' => '$42'],
-            ['image' => 'product-09.jpeg', 'name' => 'Vintage Timepiece', 'slug' => 'vintage-timepiece', 'category' => 'Watches & Jewellery', 'price' => '$85'],
-            ['image' => 'product-12.jpeg', 'name' => 'Commemorative Plate', 'slug' => 'commemorative-collector-plate', 'category' => 'Collectibles', 'price' => '$58'],
-            ['image' => 'product-03.jpeg', 'name' => 'Decorative Plate', 'slug' => 'ornate-decorative-plate', 'category' => 'Ceramics & Glassware', 'price' => '$52'],
-            ['image' => 'product-07.jpeg', 'name' => 'Artistic Mirror', 'slug' => 'vintage-artistic-mirror', 'category' => 'Decorative Objects & Art', 'price' => '$65'],
-            ['image' => 'product-15.jpeg', 'name' => 'Vintage Handbag', 'slug' => 'vintage-handbag', 'category' => 'Accessories & Handbags', 'price' => '$55'],
-            ['image' => 'product-10.jpeg', 'name' => 'Heritage Necklace', 'slug' => 'heritage-necklace', 'category' => 'Watches & Jewellery', 'price' => '$48'],
-        ];
+            $displayProducts = $bestSellers->count() > 0 ? $bestSellers : $newArrivals->count() > 0 ? $newArrivals : $onSale;
         @endphp
 
+        @if($displayProducts->count() > 0)
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            @foreach($showcaseProducts as $index => $product)
-            <a href="{{ route('products.show', $product['slug']) }}" class="product-card group block reveal" style="transition-delay: {{ $index * 0.06 }}s;">
+            @foreach($displayProducts as $index => $product)
+            @php
+                $img = $product->primaryImage ?? $product->images->first();
+                $imgPath = $img ? asset('storage/' . $img->path) : asset('images/placeholder-product.svg');
+                $catName = $product->categories->first()?->name ?? '';
+            @endphp
+            <a href="{{ route('products.show', $product->slug) }}" class="product-card group block reveal" style="transition-delay: {{ $index * 0.06 }}s;">
                 <div class="product-image aspect-square relative">
-                    <img src="{{ asset('images/nora/products/' . $product['image']) }}" alt="{{ $product['name'] }}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
+                    <img src="{{ $imgPath }}" alt="{{ $product->name }}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                     <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 pointer-events-none">
                         <span class="inline-flex items-center justify-center w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full shadow-sm">
@@ -151,15 +154,37 @@
                             </svg>
                         </span>
                     </div>
+                    @if($product->is_on_sale)
+                        <span class="absolute top-3 right-3 bg-red-500/90 text-white text-[10px] font-medium px-2.5 py-1 rounded-full backdrop-blur-sm">
+                            -{{ $product->discount_percentage }}%
+                        </span>
+                    @endif
+                    @if($product->is_one_of_a_kind)
+                        <span class="absolute top-3 left-3 bg-amber-500/90 text-white text-[10px] font-medium px-2.5 py-1 rounded-full backdrop-blur-sm">
+                            One of a Kind
+                        </span>
+                    @endif
                 </div>
                 <div class="p-4">
-                    <p class="text-[10px] font-medium text-stone-400 uppercase tracking-wider mb-1">{{ $product['category'] }}</p>
-                    <h3 class="text-sm font-medium text-stone-800 group-hover:text-stone-600 transition-colors line-clamp-2">{{ $product['name'] }}</h3>
-                    <p class="text-sm font-semibold text-stone-900 mt-2">{{ $product['price'] }}</p>
+                    @if($catName)
+                    <p class="text-[10px] font-medium text-stone-400 uppercase tracking-wider mb-1">{{ $catName }}</p>
+                    @endif
+                    <h3 class="text-sm font-medium text-stone-800 group-hover:text-stone-600 transition-colors line-clamp-2">{{ $product->name }}</h3>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-sm font-semibold text-stone-900">{{ $product->formatted_price }}</span>
+                        @if($product->is_on_sale)
+                            <span class="text-xs text-stone-400 line-through">${{ number_format($product->compare_at_price, 2) }}</span>
+                        @endif
+                    </div>
                 </div>
             </a>
             @endforeach
         </div>
+        @else
+        <div class="text-center py-16">
+            <p class="text-stone-400 text-sm">No products available yet.</p>
+        </div>
+        @endif
 
         <div class="text-center mt-14 reveal">
             <a href="{{ route('nora.gallery') }}" class="btn-primary inline-flex items-center gap-2.5">
