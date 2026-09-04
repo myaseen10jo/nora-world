@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
 use Filament\Actions;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\DB;
 
@@ -27,19 +28,12 @@ class Analytics extends Page
     public static function getNavigationItems(): array
     {
         return [
-            [
-                'icon' => 'heroicon-o-chart-bar',
-                'label' => 'Analytics',
-                'url' => static::getUrl(),
-                'isActive' => fn (Page $page): bool => static::class === $page::class || $page::class === \Filament\Pages\Dashboard::class,
-                'sort' => static::$navigationSort ?? 0,
-                'badge' => null,
-                'badgeColor' => null,
-                'group' => static::$navigationGroup,
-                'grouped' => static::$navigationGroup !== null,
-                'isSidebarCollapsibleOnDesktop' => false,
-                'isActiveWhen' => fn () => request()->routeIs('filament.admin.pages.analytics'),
-            ],
+            NavigationItem::make(static::getNavigationLabel())
+                ->icon(static::getNavigationIcon())
+                ->url(static::getUrl())
+                ->isActiveWhen(fn () => request()->routeIs('filament.admin.pages.analytics'))
+                ->group(static::$navigationGroup)
+                ->sort(static::$navigationSort ?? 0),
         ];
     }
 
