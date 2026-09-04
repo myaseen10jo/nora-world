@@ -12,10 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // Force HTTPS BEFORE session/CSRF (runs before web middleware group)
-        $middleware->prepend(\App\Http\Middleware\ForceHttpsScheme::class);
-
+        // Force HTTPS in web middleware (after session is started)
         $middleware->web(append: [
+            \App\Http\Middleware\ForceHttpsScheme::class,
             \App\Http\Middleware\ApplyDesignTheme::class,
         ]);
         $middleware->trustProxies(at: '*');

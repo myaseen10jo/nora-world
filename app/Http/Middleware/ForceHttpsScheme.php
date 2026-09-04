@@ -14,15 +14,12 @@ class ForceHttpsScheme
         $isHttps = $request->header('x-forwarded-proto') === 'https'
             || $request->header('x-forwarded-ssl') === 'on'
             || $request->server('HTTPS') === 'on'
+            || $request->server('SERVER_PORT') == 443
             || str_starts_with(config('app.url', ''), 'https://')
             || env('FORCE_HTTPS', false);
 
         if ($isHttps) {
             URL::forceScheme('https');
-            
-            // Force secure cookies
-            config(['session.secure' => true]);
-            config(['session.domain' => null]);
         }
 
         return $next($request);
