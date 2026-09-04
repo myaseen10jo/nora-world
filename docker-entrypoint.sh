@@ -79,6 +79,10 @@ echo "✅ Database ready"
 php artisan storage:link --force 2>/dev/null || true
 chmod -R 775 storage/app/public/ 2>/dev/null || true
 
+# Bridge public/images into storage so Filament ImageColumn can find them
+mkdir -p storage/app/public/images 2>/dev/null || true
+ln -sf /app/public/images/nora storage/app/public/images/nora 2>/dev/null || true
+
 echo "✅ Storage link created"
 
 # Process new product images from attachment folder

@@ -387,18 +387,13 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('primaryImage.path')
+                Tables\Columns\ImageColumn::make('primaryImage.path')
                     ->label('Image')
-                    ->html()
-                    ->stateUsing(function ($record): string {
-                        if ($record->primaryImage) {
-                            $path = $record->primaryImage->path;
-                            $trimmed = ltrim($path, '/');
-                            $src = file_exists(public_path($trimmed)) ? asset($trimmed) : asset('storage/' . $path);
-                            return '<img src="' . e($src) . '" alt="" class="w-12 h-12 rounded-full object-cover border border-stone-200">';
-                        }
-                        return '<div class="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center text-stone-400 text-lg">📷</div>';
-                    }),
+                    ->circular()
+                    ->getStateUsing(fn ($record): ?string => $record->primaryImage?->path)
+                    ->disk('public')
+                    ->defaultImageUrl(url('/images/placeholder-product.png'))
+                    ->stacked(false),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
